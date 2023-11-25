@@ -33,10 +33,10 @@ make ARCH=arm64 LLVM=1 O=build defconfig
 make ARCH=arm64 LLVM=1 O=build menuconfig
 ```
 在配置菜单中启用 Rust 支持:  
-![](https://s2.loli.net/2023/11/18/eUWqtYgT8jEkMAv.png)
+![](./screenshots/ex1/ex1_image1.png)
 
 勾选 Rust Samples:  
-![](https://s2.loli.net/2023/11/18/4yuti5DnvXJbzPj.png)
+![](./screenshots/ex1/ex1_image2.png)
 开始编译:  
 ```bash
 make ARCH=arm64 LLVM=1 O=build -j$(nproc)
@@ -56,7 +56,7 @@ export CROSS_COMPILE=aarch64-linux-gnu-
 ```
 
 在配置菜单中 (Settings -> Build Options) 设置静态编译:  
-![](https://s2.loli.net/2023/11/18/uT3AU7eyfiNVLWF.png)
+![](./screenshots/ex1/ex1_image3.png)
 
 编译:
 ```bash
@@ -90,11 +90,11 @@ exec /bin/sh
 ```
 
 用 busybox 制作 initramfs:  
-```
+```bash
 find . -print0 | cpio --null -ov --format=newc | gzip -9 > ../initramfs.cpio.gz
 ```
 
-把生成的 gz 文件放到与镜像同一目录下, 回到 build 目录, 运行:  
+把生成的 gz 文件放到与镜像同一目录下, 回到 build 目录, 运行预先写好的启动脚本, 其内容是:  
 ```bash
 qemu-system-aarch64 \
     -kernel ./arch/arm64/boot/Image \
@@ -107,7 +107,7 @@ qemu-system-aarch64 \
 ```
 
 内核成功运行:  
-![](https://s2.loli.net/2023/11/18/QauqNHcMi1wplzr.png)
+![](./screenshots/ex1/ex1_result.png)
 
 
 ### Ref
