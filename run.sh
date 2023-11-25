@@ -23,8 +23,9 @@ if [ -f "${BOOT_PATH}/${INITRAMFS}" ]; then
     timestamp2=$(stat -c %Y ${BOOT_PATH}/${INITRAMFS})
 fi
 
-echo $timestamp1
-echo $timestamp2
+echo "initramfs timestamps:"
+echo "  busybox: $timestamp1"
+echo "  boot:    $timestamp2"
 
 if [ "$timestamp1" -gt "$timestamp2" ]; then
     cp -f ${BUSYBOX_PATH}/${INITRAMFS} $BOOT_PATH
