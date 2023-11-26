@@ -37,5 +37,7 @@ qemu-system-aarch64 \
     -cpu cortex-a72 \
     -smp 8 \
     -m 1G \
+    -device e1000,netdev=net0,bus=pcie.0 \
+    -netdev user,id=net0 \
     -initrd ${BOOT_PATH}/${INITRAMFS} \
     -append "init=/init console=ttyAMA0"
